@@ -10,9 +10,9 @@ install() {
   platform=$(uname)
 
   if [[ "$platform" == "Darwin" ]]; then
-    curl -fsSL -JO https://github.com/helix-editor/helix/releases/download/$version/helix-22.05-x86_64-macos.tar.xz
+    curl -fsSL -JO https://github.com/helix-editor/helix/releases/download/${version}/helix-${version}-x86_64-macos.tar.xz
   elif [[ "$platform" == "Linux" ]]; then
-    curl -fsSL -JO https://github.com/helix-editor/helix/releases/download/$version/helix-22.05-x86_64-linux.tar.xz
+    curl -fsSL -JO https://github.com/helix-editor/helix/releases/download/${version}/helix-${version}-x86_64-linux.tar.xz
   fi
 
   tar -xf helix*z || exit 1
