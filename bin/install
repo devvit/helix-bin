@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+install() {
+  version=$2
+  install_dir=$3
+
+  build_dir=$(mktemp -d)
+  cd $build_dir
+
+  platform=$(uname)
+
+  if [[ "$platform" == "Darwin" ]]; then
+    curl -fsSL -JO https://github.com/helix-editor/helix/releases/download/$version/helix-22.05-x86_64-macos.tar.xz
+  elif [[ "$platform" == "Linux" ]]; then
+    curl -fsSL -JO https://github.com/helix-editor/helix/releases/download/$version/helix-22.05-x86_64-linux.tar.xz
+  fi
+
+  tar -xf helix*z || exit 1
+  rm -rf helix*z
+  cd helix*
+  cp -r * $install_dir/
+}
+
+install $ASDF_INSTALL_TYPE $ASDF_INSTALL_VERSION $ASDF_INSTALL_PATH
